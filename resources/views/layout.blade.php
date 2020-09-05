@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/app.css"> 
-<script src="js/app.js" charset="utf-8"></script>
+<link rel="stylesheet" href="{{asset('css/app.css')}}"> 
+<script src="{{asset('js/app.js')}}" charset="utf-8"></script>
+
+
 
 <html>
 <head>
-	<title></title>
+	<title>@yield('title')</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>

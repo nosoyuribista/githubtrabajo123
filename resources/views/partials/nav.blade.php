@@ -24,9 +24,10 @@
 					<li class="nav-item"><a class="nav-link {{setActive('proyectos')}}" href="{{route('proyectos')}} ">Mis Proyectos</a></li>
 					<li class="nav-item"><a class="nav-link" href="{{route('proyectossistemas')}} ">Proyectos de sistemas</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="{{route('proyectos')}} ">Administrar usuarios</a></li>
-					<li class="nav-item"><a class="nav-link" href="{{route('proyectos')}} ">Administrar proyectos</a></li>
-
+					<li class="nav-item"><a class="nav-link {{setActive('adminusuarios')}}" href="{{route('adminusuarios')}} ">Administrar usuarios</a></li>
+					@auth
+					<li class="nav-item"><a class="nav-link {{setActive('adminproyectos.*')}}" href="{{route('adminproyectos.index')}} ">Administrar proyectos</a></li>
+					@endauth
 
 
 
