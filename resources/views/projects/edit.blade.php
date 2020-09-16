@@ -4,16 +4,23 @@
 Actualizar proyecto
 @endsection
 @section('content')
-	<h1>Actualizar proyecto</h1>
 
-	@include('partials.validation-errors');
+	@include('partials.validation-errors')
 
-	<form method="POST" action="{{route('adminproyectos.update',$project)}}">
 
-		@method('PATCH')
+	<div class="container">	
+		<div class="row">
+			<div class="col-12 col-sm-10 col-lg-6 mx-auto">
 
-		@include('projects._form',['btnText' => 'Actualizar'])
+				<form class="bg-white shadow rounded py-3 px-4" method="POST" action="{{route('adminproyectos.update',$project)}}">
 
-	</form>
+					@method('PATCH')
+
+					@include('projects._form',['btnText' => 'Actualizar','h1name' => 'Editar proyecto'])
+				</form>
+
+			</div>
+		</div>
+	</div>
 
 @endsection

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\Type;
+
 
 class ProjectController extends Controller
 {
@@ -40,7 +42,8 @@ class ProjectController extends Controller
     {
         return view('projects.create',[
 
-            'project' => new Project
+            'project' => new Project,
+            'types' => $types = Type::all()
 
         ]);
     }
@@ -58,8 +61,8 @@ class ProjectController extends Controller
 
         $fields=request()->validate([
             'title'=> 'required',
-            'type' => 'required',
-            'description'=> 'required',
+            'type_id' => 'required',
+            'justification'=> 'required',
             'students_number'=>'required'
 
         ]);
@@ -83,7 +86,8 @@ class ProjectController extends Controller
     {
 
         return view('projects.show', [
-            'project' => $project
+            'project' => $project,
+            'types' => $types = Type::all()
 
         ]);
     }
@@ -98,10 +102,10 @@ class ProjectController extends Controller
     {
 
           return view('projects.edit', [
-            'project' => $project
+            'project' => $project,
+            'types' => $types = Type::all()
+        ]);
 
-        ]);      
-        
     }
 
     /**
@@ -116,8 +120,8 @@ class ProjectController extends Controller
 
          $fields=request()->validate([
             'title'=> 'required',
-            'type' => 'required',
-            'description'=> 'required',
+            'type_id' => 'required',
+            'justification'=> 'required',
             'students_number'=>'required'
 
         ]);
@@ -143,10 +147,11 @@ class ProjectController extends Controller
     public function search()
 
     {
-      $id=request()->validate([
-            'id'=> 'required'
-        ]);
-        $project = Project::findOrFail($id);
+         $id=request()->get('id');
+         //return $id;
+        $project = Project::find($id);
         return redirect()->route('adminproyectos.show', $project);
     }
+
+    
 }
