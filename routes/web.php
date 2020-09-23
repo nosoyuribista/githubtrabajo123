@@ -57,8 +57,8 @@ Route::delete('/adminproyectos/{project}','ProjectController@destroy')->name('ad
 
 Route::post('/adminproyectos/buscar','ProjectController@search')->name('adminproyectos.search');
 
-Route::post('/agregar/{project}','ProjectController@adduser')->name('adminproyectos.adduser');
-
+Route::post('/agregarusuario/{project}','ProjectController@adduser')->name('adminproyectos.adduser');
+Route::get('/borrarusuario/{project}/{user_id}','ProjectController@deleteuser')->name('adminproyectos.deleteuser');
 
 //Auth::routes();
 

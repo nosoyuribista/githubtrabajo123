@@ -19,7 +19,7 @@
           <td>{{$user->name}}</td>
           <td>{{$user->email}}</td>
           <td>
-            <a href="{{$project->deleteUser($user->id)}}" class="btn btn-danger">Borrar</a>
+            <a href="/proyecto/public/borrarusuario/{{$project->id}}/{{$user->id}}" class="btn btn-danger">Borrar</a>
           </td>
         </tr>
       @endif
@@ -51,7 +51,7 @@
           
             </select>
             
-            <button form="form_user" type="submit" class="btn btn-primary btn-lg btn-block">Agregar
+            <button form="form_user" type="submit" class="btn btn-primary btn-lg btn-block" >Agregar
             </button>
           
         </form>

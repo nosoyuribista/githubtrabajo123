@@ -39,10 +39,11 @@ Actualizar proyecto
   <div class="tab-pane fade" id="asesor" role="tabpanel" aria-labelledby="asesor-tab">
     @include('projects.user_list',['text' => 'asesor','role_id'=>2])
   </div>
-  <div class="tab-pane fade" id="coasesores" role="tabpanel" aria-labelledby="coasesores-tab">Coasesores</div>
-  <div class="tab-pane fade" id="jurados" role="tabpanel" aria-labelledby="jurados-tab">Coasesores
+  <div class="tab-pane fade" id="coasesores" role="tabpanel" aria-labelledby="coasesores-tab">@include('projects.user_list',['text' => 'coasesor','role_id'=>3])</div>
+  <div class="tab-pane fade" id="jurados" role="tabpanel" aria-labelledby="jurados-tab">
+    @include('projects.user_list',['text' => 'jurados','role_id'=>4])
   </div>
-  <div class="tab-pane fade" id="estudiantes" role="tabpanel" aria-labelledby="estudiantes-tab">Coasesores</div>
+  <div class="tab-pane fade" id="estudiantes" role="tabpanel" aria-labelledby="estudiantes-tab">@include('projects.user_list',['text' => 'estudiante','role_id'=>5])</div>
 </div>
 
 

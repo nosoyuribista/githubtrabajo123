@@ -168,18 +168,17 @@ class ProjectController extends Controller
         return redirect()->route('adminproyectos.show', $project);
     }
 
-    public function adduser(Project $project)
+    public function adduser(Project $project,Request $request)
     {
-        $user_id=request()->validate([
-            'user_id'=> 'required',
-            'role_id'=> 'required|integer'
-        ]);
-        
-         
-
-        $project->users()->attach($user_id,['role_id'=>$user_id->role_id]);
-        
-
+        $user_id = $request->input('user_id');
+        $role_id= $request->input('role_id');
+        $project->users()->attach($user_id,['role_id'=>$role_id]);
+        return redirect()->back();
+    }
+    public function deleteuser($project_id,$user_id){
+       $project = Project::find($project_id);
+       $project->users()->detach($user_id);
+        return redirect()->back();
     }
 
     
