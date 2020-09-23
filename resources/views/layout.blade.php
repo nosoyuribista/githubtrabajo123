@@ -20,7 +20,7 @@
 			@yield('content')
 		</main>
 		<footer class="bg-white text-center text-black-50 py-3 shadow">
-			{{config('app.name')}} - Trabajo de grado
+			{{config('app.name')}} - Trabajo
 		</footer>
 	</div>
 </body>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Type;
+use App\User;
 
 
 class ProjectController extends Controller
@@ -40,10 +41,16 @@ class ProjectController extends Controller
      */
     public function create()
     {
+    
+        
         return view('projects.create',[
 
             'project' => new Project,
-            'types' => $types = Type::all()
+            'types' => $types = Type::all(),
+            'users' => $user = User::join('assigned_roles','assigned_roles.user_id', '=','users.id')
+                                            ->where('role_id',2)->get()
+                    
+
 
         ]);
     }
@@ -66,10 +73,12 @@ class ProjectController extends Controller
             'students_number'=>'required'
 
         ]);
+        $user_id=request()->validate([
+            'user_id' => 'required'
+        ]);
 
-        //creo una tabla con la request y solo los campos en only.
 
-        Project::create($fields);
+        Project::create($fields)->users()->attach($user_id,['role_id'=>2]);
 
         //redirecciono a otra vista por la ruta adminproyectoindex
 
@@ -101,9 +110,14 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
 
-          return view('projects.edit', [
+          return view('projects._tabs_edit', [
             'project' => $project,
-            'types' => $types = Type::all()
+            'types' => $types = Type::all(),
+            'teachers' => $teachers = User::join('assigned_roles','assigned_roles.user_id', '=','users.id')
+            ->where('role_id',6)->get(),
+            'students' => $students = User::join('assigned_roles','assigned_roles.user_id', '=','users.id')
+            ->where('role_id',5)->get()
+            
         ]);
 
     }
@@ -125,8 +139,9 @@ class ProjectController extends Controller
             'students_number'=>'required'
 
         ]);
-        $project->update($fields);
 
+          
+        $project->update($fields);
         return redirect()->route('adminproyectos.show', $project);
 
     }
@@ -151,6 +166,20 @@ class ProjectController extends Controller
          //return $id;
         $project = Project::find($id);
         return redirect()->route('adminproyectos.show', $project);
+    }
+
+    public function adduser(Project $project)
+    {
+        $user_id=request()->validate([
+            'user_id'=> 'required',
+            'role_id'=> 'required|integer'
+        ]);
+        
+         
+
+        $project->users()->attach($user_id,['role_id'=>$user_id->role_id]);
+        
+
     }
 
     

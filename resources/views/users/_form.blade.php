@@ -55,16 +55,17 @@
 		<div class="checkbox">
 
 			@foreach($roles as $id => $name)
-
+				@if($id == 5 || $id == 6)
 				<label>
 					<input 
-					type="checkbox" 
+					type="radio" 
 					value="{{ $id }}" 
 					{{ $user->roles->pluck('id')->contains($id) ? 'checked' : ''}}
 					name="roles[]">
 
 					{{$name}}
 				</label>
+				@endif
 
 			@endforeach
 			

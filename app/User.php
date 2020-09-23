@@ -42,6 +42,12 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany(Role::class, 'assigned_roles');
     }
+    public function projects(){
+        return $this->belongsToMany(Project::class, 'project_user');
+    }
+    public function roles_project(){
+        return $this->belongsToMany(Role::class, 'project_user');
+    }
 
 
     public function hasRoles(array $roles){
@@ -66,4 +72,6 @@ class User extends Authenticatable
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
+
+
 }

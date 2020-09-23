@@ -16,6 +16,11 @@
 		<p class="text-secondary">Tipo : {{$project->type->display_name}}</p>
 		<p class="text-black-50">Actualizado {{$project->updated_at->diffForHumans()}}</p>
 		<p class="text-black-50">Creado {{$project->created_at->diffForHumans()}}</p>
+		<p class="text-secondary">Asesor : 
+		@foreach($project->users()->where('role_id',2)->get() as $asesor)
+			{{$asesor->name}}
+		@endforeach
+	</p>
 		<hr>
 		<div class="d-flex justify-content-between">
 		<a href="{{route('adminproyectos.index')}}">Regresar</a>
